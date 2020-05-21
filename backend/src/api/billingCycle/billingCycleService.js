@@ -18,11 +18,17 @@ BillingCycle.route('count', (req, res, next) => {
 })
 
 BillingCycle.route('summary', (req, res, next) => {
+    //pipiline aggregate
     BillingCycle.aggregate([{ 
+        //get all credit and debt of each object and sum they. The result is returned on object with key 'credit' and 'debt'
         $project: {credit: {$sum: "$credits.value"}, debt: {$sum: "$debts.value"}} 
     }, { 
+        //get each sum from above step and sum again generating a new object
+        //_id = null need be passed to get all objects
         $group: {_id: null, credit: {$sum: "$credit"}, debt: {$sum: "$debt"}}
-    }, { 
+    }, {
+        // id (_id = 0) is false field, in the another words it no showed on object
+        // however, credit and debt will return
         $project: {_id: 0, credit: 1, debt: 1}
     }], (error, result) => {
         if(error) {
