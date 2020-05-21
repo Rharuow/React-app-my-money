@@ -1,10 +1,15 @@
 //get the reference to model billingCycle of mongoose
 const BillingCycle = require('./billingCycle')
+//reference to middleware created to transform errors on a array
+const errorsHandler = require('../common/errorsHandler')
+
 
 //Using express methods to create services web
 BillingCycle.methods(['get', 'post', 'put', 'delete'])
 //By default the mongo doesn't apply validations to update (put) but just insert (post). Furthermore when the update is done, it's returned to the old object. This method 'updateOption' make adjustments about this.
 BillingCycle.updateOptions({ new: true, runValidators: true })
+//apply middleware errorsHandler
+BillingCycle.after('post', errorsHandler).after('put', errorsHandler)
 
 BillingCycle.route('count', (req, res, next) => {
     BillingCycle.count((error, value) => {
