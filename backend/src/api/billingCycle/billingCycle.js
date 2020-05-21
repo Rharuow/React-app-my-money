@@ -1,6 +1,9 @@
 const restful = require('node-restful')
+//creating instance mongoose with restful package
 const mongoose = restful.mongoose
+//OBS: EXPRESS AND MONGO DOESN'T HAVE COMMUNICATION. AS THE MONGO'S REFERENCE WITH 'restful.mongoose' THE RESTFUL PACKAGE MAKE A LINK BETWEEN THEM, ALLOW US USE MONGOOSE METHODS AS THE EXPRESS METHODS.
 
+//Using mongoose's method Schema to create schemas
 const creditSchema = new mongoose.Schema({
     name: { type: String, require: true },
     value: { type: Number, min:0, require: true }
@@ -20,4 +23,5 @@ const billingCycleSchema = new mongoose.Schema({
     debts: [debtSchema]
 })
 
+//exporting the model with billingCycleSchema to persistence
 module.exports = restful.model('BillingCycle', billingCycleSchema)
