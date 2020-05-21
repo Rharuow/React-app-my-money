@@ -8,7 +8,7 @@ module.exports = function(server) {
     server.use('/api', router)
     
     //get references to model billingCycle
-    const BillingCycle = require('../api/billingCycle/billingCycle')
+    const BillingCycle = require('../api/billingCycle/billingCycleService')
     //registering routes from /billingCycles
     //Now, to acess web express's API restful service, the url is 'http://localhost:3003/api/billingCycles'
     BillingCycle.register(router, '/billingCycles')
