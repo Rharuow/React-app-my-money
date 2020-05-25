@@ -1,8 +1,12 @@
 {
-  "name": "frontend",
+  "name": "my-money-frontend",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "dev": "webpack-dev-server --progress --colors --inline --hot",
+    "production": "webpack --progress -p"
+  },
   "devDependencies": {
     "admin-lte": "2.3.6",
     "axios": "0.15.3",
