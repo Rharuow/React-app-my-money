@@ -15,15 +15,15 @@ module.exports = {
         extensions: ['', '.js', '.jsx'],
         alias: {
             modules: __dirname + '/node_modules',
-            jquery: 'modules/admin-lte/plugins/JQuery/jquery-2.2.3.min.js',
+            jquery: 'modules/admin-lte/plugins/jQuery/jquery-2.2.3.min.js',
             bootstrap: 'modules/admin-lte/bootstrap/js/bootstrap.js'
         }
     },
     plugins: [
         new webpack.ProvidePlugin({
             $:'jquery',
-            JQuery: 'jquery',
-            'window.JQuery': 'jquery'
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery'
         }),
         new ExtractTextPlugin('app.css')
     ],
