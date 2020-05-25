@@ -12,9 +12,9 @@ module.exports = {
         contentBase: './public'
     },
     resolve: {
-        extension: ['', 'js', 'jsx'],
+        extensions: ['', '.js', '.jsx'],
         alias: {
-            modules: __dirname + 'node_modules',
+            modules: __dirname + '/node_modules',
             jquery: 'modules/admin-lte/plugins/JQuery/jquery-2.2.3.min.js',
             bootstrap: 'modules/admin-lte/bootstrap/js/bootstrap.js'
         }
@@ -40,7 +40,7 @@ module.exports = {
             test: /\.css$/,
             loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
         },{
-            test: /\.woff|.woff2|.ttf|.eot|.svg|.png|.jpg|*.*$/,
+            test: /\.woff|.woff2|.ttf|.eot|.svg|.png|.jpg*.*$/,
             loader: 'file'
         }]
     }
