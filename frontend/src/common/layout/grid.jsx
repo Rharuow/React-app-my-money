@@ -12,7 +12,7 @@ export default props => {
         return classes
     }
 
-    const gridClasses = toCssClasses(this.props.cols || "12")
+    const gridClasses = toCssClasses(props.cols || "12")
 
     return(
         <div className={gridClasses}>
