@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import { render } from 'react-dom'
+import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
@@ -7,28 +8,32 @@ import Content from '../common/template/content'
 import ValueBox from '../common/widget/valueBox'
 import Row from '../common/layout/row'
 
-import { getSummary } from '../dashboard/dashboardActions'
+import { getSummary } from './dashboardActions'
 
-const Dashboard = props => {
+class Dashboard extends Component {
+    
+    componentWillMount() {
+        this.props.getSummary()
+    }
 
-    useEffect(() => {
-        console.log("START")
-        // props.getSummary()
-    })
+    render() {
+        
+        const { credit, debt } = this.props.summary
 
-    const { credit, debt } = props.summary
-    return (
-    <div>
-        <ContentHeader title="Dashboard" small="Versão 1.0"/>
-        <Content>
-            <Row>
-                <ValueBox cols='12 4' color='green' icon='bank' value={`R$ ${credit}`} text='Total de Créditos'/>
-                <ValueBox cols='12 4' color='red' icon='credit-card' value={`R$ ${debt}`} text='Total de Débitos'/>
-                <ValueBox cols='12 4' color='blue' icon='money' value={`R$ ${credit - debt}`} text='Valor Consolidado'/>
-            </Row>
-        </Content>
-    </div>
-)}
+        return (
+            <div>
+                <ContentHeader title="Dashboard" small="Versão 1.0"/>
+                <Content>
+                    <Row>
+                        <ValueBox cols='12 4' color='green' icon='bank' value={`R$ ${credit}`} text='Total de Créditos'/>
+                        <ValueBox cols='12 4' color='red' icon='credit-card' value={`R$ ${debt}`} text='Total de Débitos'/>
+                        <ValueBox cols='12 4' color='blue' icon='money' value={`R$ ${credit - debt}`} text='Valor Consolidado'/>
+                    </Row>
+                </Content>
+            </div>
+        )
+    }
+}
 
 const mapStateToProps = state => ({ summary: state.dashboard.summary})
 const mapDispatchToProps = dispatch => bindActionCreators({ getSummary }, dispatch)
