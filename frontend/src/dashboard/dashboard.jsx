@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import ContentHeader from '../common/template/contentHeader'
@@ -6,8 +7,15 @@ import Content from '../common/template/content'
 import ValueBox from '../common/widget/valueBox'
 import Row from '../common/layout/row'
 
+import { getSummary } from '../dashboard/dashboardActions'
+
 const Dashboard = props => {
-    console.log("props ", props)
+
+    useEffect(() => {
+        console.log("START")
+        // props.getSummary()
+    })
+
     const { credit, debt } = props.summary
     return (
     <div>
@@ -23,6 +31,12 @@ const Dashboard = props => {
 )}
 
 const mapStateToProps = state => ({ summary: state.dashboard.summary})
+const mapDispatchToProps = dispatch => bindActionCreators({ getSummary }, dispatch)
 
 
-export default connect(mapStateToProps)(Dashboard)
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(
+    Dashboard
+)
