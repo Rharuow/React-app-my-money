@@ -9,9 +9,9 @@ class ButtonChangeVersion extends Component {
         const { version, changeVersion } = this.props
         return (
             <div style={{marginLeft : "auto", marginRight: "10px", alignSelf: "center"}}>
-                <button className="btn btn-warning" onClick={() => changeVersion(version)}>
+                <a className="btn btn-warning" href={ version === 2 ? "#/without-redux" : '#/'} onClick={() => changeVersion(version)}>
                 Trocar de versão
-                </button>
+                </a>
             </div>
         )
     }
