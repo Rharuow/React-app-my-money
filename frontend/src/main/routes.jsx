@@ -1,13 +1,24 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Router, Route, Redirect, hashHistory } from 'react-router'
 
-import Dashboard from '../dashboard/dashboard'
+import DashboardWithRedux from '../dashboard/dashboard'
+import DashboardWithoutRedux from '../dahsboardWithoutRedux/dashboard'
 import BillingCycles from '../billingCycles/billingCycles'
+import { connect } from 'react-redux'
 
-export default props => (    
-    <Router history={hashHistory}>
-        <Route path="/" component={Dashboard}/>
-        <Route path="/billingCycles" component={BillingCycles}/>
-        <Redirect from="*" to="/"/>
-    </Router>
-)
+class Routers extends Component {
+    render() {
+        return(
+            <Router history={hashHistory}>
+                <Route path="/" component={ DashboardWithRedux }/>
+                <Route path="/without-redux" component={ DashboardWithoutRedux }/>
+                <Route path="/billingCycles" component={BillingCycles}/>
+                <Redirect from="*" to="/"/>
+            </Router>
+        )
+    }
+}
+
+const mapStateToProps = state => ({ version: state.dashboard.version })
+
+export default connect(mapStateToProps)(Routers)

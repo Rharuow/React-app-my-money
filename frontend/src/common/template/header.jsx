@@ -1,5 +1,7 @@
 import React from 'react'
 
+import ChangeVersionButton from '../widget/versionButton'
+
 export default props => (
     <header className="main-header">
         <a href="/#/" className="logo">
@@ -9,8 +11,11 @@ export default props => (
                 <b>My</b> Money
             </span>
         </a>
-        <nav className="navbar navbar-static-top">
+        <nav className="navbar navbar-static-top" style={{display:"flex"}}>
             <a href="" className="sidebar-toggle" data-toggle="offcanvas"></a>
+            <ChangeVersionButton/> 
         </nav>
+
+
     </header>
 )
